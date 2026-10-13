@@ -71,12 +71,97 @@ footer .credit b{font-weight:800}
 .insta:hover{text-decoration:none;border-color:var(--teal)}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:50}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* Nav tabs */
+.navTabs{display:flex;gap:8px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.navTabs button{padding:10px 20px;border:2px solid #7C3AED;background:#fff;color:#7C3AED;border-radius:999px;font-weight:700;cursor:pointer;font-size:14px}
+.navTabs button.active{background:#7C3AED;color:#fff}
+.navTabs button:hover{background:#EDE9FE}
+/* Login modal */
+.loginModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
+.loginModal.show{display:flex}
+.loginBox{background:#fff;border-radius:16px;padding:30px;width:90%;max-width:380px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
+.loginBox h2{margin:0 0 8px;text-align:center;color:#7C3AED}
+.loginBox p{color:#6b7280;text-align:center;font-size:14px;margin:0 0 20px}
+.loginBox input{width:100%;padding:12px;border:2px solid #E5E7EB;border-radius:10px;margin-bottom:12px;font-size:15px;box-sizing:border-box}
+.loginBox input:focus{outline:none;border-color:#7C3AED}
+.loginBtn{width:100%;padding:13px;background:#7C3AED;color:#fff;border:0;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:10px}
+.loginBtn:hover{background:#6D28D9}
+.loginBtn.secondary{background:#fff;color:#7C3AED;border:2px solid #7C3AED}
+.loginClose{text-align:center;margin-top:12px;color:#6b7280;cursor:pointer;font-size:13px}
+/* Chat */
+.chatBox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:20px;max-width:700px;margin-left:auto;margin-right:auto}
+.chatMessages{height:300px;overflow-y:auto;border:1px solid #E5E7EB;border-radius:10px;padding:12px;margin-bottom:12px;background:#F9FAFB}
+.chatMsg{margin-bottom:10px;padding:8px 12px;background:#EDE9FE;border-radius:10px;max-width:80%}
+.chatMsg.own{background:#7C3AED;color:#fff;margin-left:auto}
+.chatMsg .sender{font-weight:700;font-size:12px;opacity:0.8}
+.chatMsg .text{font-size:14px;margin-top:2px}
+.chatInput{display:flex;gap:8px}
+.chatInput input{flex:1;padding:11px;border:2px solid #E5E7EB;border-radius:999px;font-size:14px}
+.chatInput button{padding:11px 20px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;cursor:pointer}
+.chatInput button:hover{background:#6D28D9}
+/* View More */
+.viewMoreWrap{text-align:center;margin:24px 0}
+.viewMoreBtn{padding:13px 32px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer}
+.viewMoreBtn:hover{background:#6D28D9}
+.viewMoreBtn:disabled{background:#D1D5DB;cursor:default}
+/* Page sections */
+.pageSection{display:none}
+.pageSection.active{display:block}
+.userBar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:10px 0;font-size:13px;color:#6b7280}
+.userBar b{color:#7C3AED}
+.logoutBtn{background:none;border:1px solid #E5E7EB;padding:5px 12px;border-radius:999px;cursor:pointer;font-size:12px;color:#6b7280}
 </style>
 </head>
 <body>
 <header class="top"><div class="topInner"><div class="logo">FSJ / BFD Finder<small>Germany · Freiwilligendienst</small></div><span class="pill" id="pillCount">44 places</span></div></header>
 
-<div class="wrap">
+
+<div class="userBar" id="userBar" style="display:none">
+  <span>Logged in as <b id="userNameDisplay"></b></span>
+  <button class="logoutBtn" onclick="logout()">Logout</button>
+</div>
+
+<div class="navTabs">
+  <button class="active" onclick="showPage('directory', this)">📋 Directory</button>
+  <button onclick="showPage('chat', this)">💬 Global Chat</button>
+  <button onclick="showPage('login', this)" id="loginTabBtn">🔐 Login</button>
+</div>
+
+<!-- CHAT PAGE -->
+<div class="pageSection" id="chatPage">
+  <div class="chatBox">
+    <h2 style="margin:0 0 8px;color:#7C3AED">💬 Global Chat</h2>
+    <p style="color:#6b7280;font-size:14px;margin:0 0 16px">Connect with other FSJ/BFD applicants. Share tips, ask questions.</p>
+    <div id="chatLoginPrompt" style="text-align:center;padding:30px;background:#FEF3C7;border-radius:10px;margin-bottom:12px">
+      <p style="margin:0 0 12px">Please login to chat.</p>
+      <button class="loginBtn" style="width:auto;padding:10px 24px" onclick="openLogin()">Login / Sign Up</button>
+    </div>
+    <div id="chatArea" style="display:none">
+      <div class="chatMessages" id="chatMessages"></div>
+      <div class="chatInput">
+        <input id="chatInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendChat()"/>
+        <button onclick="sendChat()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div class="loginModal" id="loginModal">
+  <div class="loginBox">
+    <h2>Welcome to FSJ Finder</h2>
+    <p>Create an account or login to chat</p>
+    <input id="loginName" type="text" placeholder="Your name"/>
+    <input id="loginEmail" type="email" placeholder="Email address"/>
+    <input id="loginPass" type="password" placeholder="Password"/>
+    <button class="loginBtn" onclick="doLogin()">Login / Sign Up</button>
+    <button class="loginBtn secondary" onclick="doGoogleLogin()">Continue with Google</button>
+    <div class="loginClose" onclick="closeLogin()">Close</div>
+    <p style="font-size:11px;color:#9CA3AF;margin-top:12px">Your account is saved on this device only. Chat messages are stored locally.</p>
+  </div>
+</div>
+<div class="wrap" id="directoryPage">
   <section class="hero">
     <div class="langToggle" role="group" aria-label="Hero language">
       <button type="button" id="langEn" class="active">English</button>
@@ -102,7 +187,7 @@ footer .credit b{font-weight:800}
     <span class="count" id="count"></span>
   </div>
 
-  <div class="grid" id="opportunities"></div>
+  <div class="grid" id="opportunities"></div><div class="viewMoreWrap"><button class="viewMoreBtn" id="viewMoreBtn" onclick="loadMore()">View More ↓</button><p id="showingCount" style="color:#6b7280;font-size:13px;margin-top:8px"></p></div>
 
   <footer>
     <span class="credit">Made by <b>Eldhose Bose</b></span>
@@ -778,6 +863,146 @@ landSel.addEventListener('change',render);
 typeSel.addEventListener('change',render);
 document.getElementById('housingChip').addEventListener('click',function(e){housingOnly=!housingOnly;e.currentTarget.classList.toggle('active',housingOnly);render()});
 render();
+
+// ===== PAGINATION =====
+let visibleCount = 20;
+let filteredPlaces = [];
+function render(){
+  const q=(document.getElementById('q').value||'').toLowerCase();
+  const t=document.getElementById('typeSel').value;
+  const l=document.getElementById('landSel').value;
+  const h=document.getElementById('housingChip').classList.contains('on');
+  filteredPlaces=PLACES.filter(p=>{
+    if(q && !((p.name+' '+p.city+' '+p.email).toLowerCase().includes(q))) return false;
+    if(t && p.type!==t) return false;
+    if(l && p.land!==l) return false;
+    if(h && !p.housing) return false;
+    return true;
+  });
+  visibleCount=20;
+  renderGrid();
+  document.getElementById('count').textContent=filteredPlaces.length+' places';
+  document.getElementById('pillCount').textContent=PLACES.length+' places';
+}
+function renderGrid(){
+  const grid=document.getElementById('opportunities');
+  const show=filteredPlaces.slice(0,visibleCount);
+  grid.innerHTML=show.map(cardHTML).join('')||'<div class="empty">No places match your search.</div>';
+  const btn=document.getElementById('viewMoreBtn');
+  const cnt=document.getElementById('showingCount');
+  if(filteredPlaces.length<=visibleCount){btn.style.display='none';cnt.textContent='Showing all '+filteredPlaces.length+' places';}
+  else{btn.style.display='inline-block';btn.disabled=false;btn.textContent='View More ↓ ('+visibleCount+' of '+filteredPlaces.length+')';cnt.textContent='Showing '+visibleCount+' of '+filteredPlaces.length+' places';}
+}
+function loadMore(){
+  visibleCount+=20;
+  renderGrid();
+  document.getElementById('opportunities').lastElementChild.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function cardHTML(p){
+  const email=p.email?'<div class="emailRow"><a href="mailto:'+p.email+'">'+p.email+'</a><button class="copyBtn" onclick="copyEmail(\''+p.email.replace(/'/g,"\\'")+'\',this)">Copy</button></div>':'<div class="emailRow"><span>No direct email — use website</span></div>';
+  const web=p.web?'<a class="webLink" href="'+p.web+'" target="_blank" rel="noopener">Website</a>':'<span class="noWeb">No website listed</span>';
+  const loc=[p.city,p.land].filter(Boolean).join(' · ');
+  const tag=p.housing?'<span style="background:#FEF3C7;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700">🏠 Housing</span>':'';
+  return '<article class="card"><h3>'+p.name+'</h3><div class="loc">'+loc+' '+tag+'</div>'+email+web+(p.note?'<div style="font-size:13px;color:#6b7280;line-height:1.5">'+p.note+'</div>':'')+'</article>';
+}
+
+// ===== PAGE NAVIGATION =====
+function showPage(page, btn){
+  document.querySelectorAll('.navTabs button').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  document.getElementById('directoryPage').style.display = page==='directory' ? 'block' : 'none';
+  document.getElementById('chatPage').style.display = page==='chat' ? 'block' : 'none';
+  if(page==='login'){ openLogin(); }
+  if(page==='chat'){ updateChatUI(); }
+}
+
+// ===== LOGIN (localStorage) =====
+function openLogin(){ document.getElementById('loginModal').classList.add('show'); }
+function closeLogin(){ document.getElementById('loginModal').classList.remove('show'); }
+function doLogin(){
+  const name=document.getElementById('loginName').value.trim();
+  const email=document.getElementById('loginEmail').value.trim();
+  const pass=document.getElementById('loginPass').value;
+  if(!name || !email || !pass){ alert('Please fill all fields'); return; }
+  localStorage.setItem('fsj_user', JSON.stringify({name,email}));
+  updateUserUI();
+  closeLogin();
+  showPage('directory', document.querySelector('.navTabs button'));
+  alert('Welcome, '+name+'! You are logged in.');
+}
+function doGoogleLogin(){
+  const email=prompt('Enter your Gmail address:');
+  if(!email) return;
+  const name=email.split('@')[0];
+  localStorage.setItem('fsj_user', JSON.stringify({name,email}));
+  updateUserUI();
+  closeLogin();
+  showPage('directory', document.querySelector('.navTabs button'));
+  alert('Welcome, '+name+'! Logged in with Google.');
+}
+function logout(){
+  localStorage.removeItem('fsj_user');
+  updateUserUI();
+  updateChatUI();
+}
+function getUser(){
+  try{ return JSON.parse(localStorage.getItem('fsj_user')||'null'); }catch(e){ return null; }
+}
+function updateUserUI(){
+  const u=getUser();
+  const bar=document.getElementById('userBar');
+  const loginBtn=document.getElementById('loginTabBtn');
+  if(u){
+    bar.style.display='flex';
+    document.getElementById('userNameDisplay').textContent=u.name;
+    loginBtn.textContent='👤 '+u.name;
+  } else {
+    bar.style.display='none';
+    loginBtn.textContent='🔐 Login';
+  }
+}
+
+// ===== CHAT (localStorage) =====
+function getChats(){
+  try{ return JSON.parse(localStorage.getItem('fsj_chats')||'[]'); }catch(e){ return []; }
+}
+function updateChatUI(){
+  const u=getUser();
+  const prompt=document.getElementById('chatLoginPrompt');
+  const area=document.getElementById('chatArea');
+  if(u){ prompt.style.display='none'; area.style.display='block'; renderChats(); }
+  else{ prompt.style.display='block'; area.style.display='none'; }
+}
+function renderChats(){
+  const msgs=getChats();
+  const box=document.getElementById('chatMessages');
+  const u=getUser();
+  if(msgs.length===0){
+    box.innerHTML='<p style="color:#9CA3AF;text-align:center;padding:40px">No messages yet. Be the first to say hello! 👋</p>';
+    return;
+  }
+  box.innerHTML=msgs.map(m=>{
+    const isOwn = u && m.sender===u.name;
+    return '<div class="chatMsg '+(isOwn?'own':'')+'"><div class="sender">'+m.sender+' · '+m.time+'</div><div class="text">'+escapeHtml(m.text)+'</div></div>';
+  }).join('');
+  box.scrollTop=box.scrollHeight;
+}
+function sendChat(){
+  const u=getUser();
+  if(!u){ openLogin(); return; }
+  const inp=document.getElementById('chatInput');
+  const text=inp.value.trim();
+  if(!text) return;
+  const msgs=getChats();
+  msgs.push({sender:u.name, text:text, time:new Date().toLocaleString()});
+  localStorage.setItem('fsj_chats', JSON.stringify(msgs));
+  inp.value='';
+  renderChats();
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+
+// Init user UI on load
+updateUserUI();
 </script>
 </body>
 </html>
