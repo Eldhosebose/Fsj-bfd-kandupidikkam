@@ -812,36 +812,7 @@ function copyText(txt){
   else{const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');toast('Copied: '+txt)}catch(e){toast(txt)}ta.remove()}
 }
 function webLabel(url){try{return new URL(url).hostname.replace(/^www\./,'')}catch(e){return url}}
-function render(){
-  const q=document.getElementById('q').value.toLowerCase().trim();
-  const land=landSel.value;
-  const type=typeSel.value;
-  const filtered=PLACES.filter(p=>{
-    if(type && p.type!==type) return false;
-    if(housingOnly && !p.housing) return false;
-    if(land && p.land!==land) return false;
-    if(q && !(p.name+' '+p.city+' '+p.land+' '+p.email+' '+p.type+' '+p.web).toLowerCase().includes(q)) return false;
-    return true;
-  });
-  document.getElementById('count').textContent=filtered.length+' found';
-  const el=document.getElementById('opportunities');
-  if(!filtered.length){el.innerHTML='<div class="empty"><b>No places found.</b><br>Try a different search or clear the filters.</div>';return}
-  el.innerHTML=filtered.map(function(p){
-    if(!p.email && !p.web){
-      var locOnly=(p.city||p.land) ? '<div class="loc">'+esc(p.city)+(p.city&&p.land?' · ':'')+esc(p.land)+(p.housing?' · Housing':'')+'</div>' : '';
-      return '<article class="card"><h3>'+esc(p.name)+'</h3>'+locOnly+'<div class="emailRow"><span>No direct email or website listed — apply via the organisation directly</span></div></article>';
-    }
-    var emailHtml=p.email
-      ? '<div class="emailRow"><a href="mailto:'+esc(p.email)+'">'+esc(p.email)+'</a><button class="copyBtn" data-copy="'+esc(p.email)+'">Copy</button></div>'
-      : '<div class="emailRow"><span>No direct email — use website</span></div>';
-    var webHtml=p.web
-      ? '<a class="webLink" href="'+esc(p.web)+'" target="_blank" rel="noopener">'+esc(webLabel(p.web))+'</a>'
-      : '<span class="noWeb">No website listed</span>';
-    var loc=(p.city||p.land) ? '<div class="loc">'+esc(p.city)+(p.city&&p.land?' · ':'')+esc(p.land)+(p.housing?' · Housing':'')+'</div>' : '';
-    return '<article class="card"><h3>'+esc(p.name)+'</h3>'+loc+emailHtml+webHtml+'</article>';
-  }).join('');
-  el.querySelectorAll('[data-copy]').forEach(function(b){b.addEventListener('click',function(){copyText(b.getAttribute('data-copy'))})});
-}
+
 const HERO_TEXT={
 en:{h1:"Germany Is Closer Than You Think.",sub:"Opportunities for volunteers from India and around the world.",desc:"Find FSJ and BFD organisations, check their requirements, explore accommodation options and contact them directly. No agency required.",btn:"Explore Opportunities →",note:"Hospitals · Care Homes · Kitas · Volunteer Organisations"},
 ml:{h1:"ജർമ്മനിയിൽ ഒരു പുതിയ തുടക്കം!",sub:"നിങ്ങളുടെ സ്വപ്നത്തിലേക്കുള്ള ആദ്യ ചുവട് ഇവിടെ തുടങ്ങാം.",desc:"ജർമ്മനിയിൽ FSJ, BFD എന്നിവയിലൂടെ സന്നദ്ധസേവനം ചെയ്യാൻ ആഗ്രഹിക്കുന്നവർക്കായി ഒരിടം. ആശുപത്രികൾ, വൃദ്ധസദനങ്ങൾ, കിന്റർഗാർട്ടനുകൾ, മറ്റ് സ്ഥാപനങ്ങൾ — അവസരങ്ങൾ കണ്ടെത്താം, നേരിട്ട് ബന്ധപ്പെടാം, സ്വന്തം നിലയിൽ അപേക്ഷിക്കാം.",btn:"അവസരങ്ങൾ കണ്ടെത്താം →",note:"ഏജൻസികൾ വേണ്ട. അവസരങ്ങൾ കണ്ടെത്താൻ ഇനി എളുപ്പവഴി!"}
@@ -862,7 +833,6 @@ document.getElementById('q').addEventListener('input',render);
 landSel.addEventListener('change',render);
 typeSel.addEventListener('change',render);
 document.getElementById('housingChip').addEventListener('click',function(e){housingOnly=!housingOnly;e.currentTarget.classList.toggle('active',housingOnly);render()});
-render();
 
 // ===== PAGINATION =====
 let visibleCount = 20;
@@ -871,7 +841,7 @@ function render(){
   const q=(document.getElementById('q').value||'').toLowerCase();
   const t=document.getElementById('typeSel').value;
   const l=document.getElementById('landSel').value;
-  const h=document.getElementById('housingChip').classList.contains('on');
+  const h=typeof housingOnly !== 'undefined' ? housingOnly : false;
   filteredPlaces=PLACES.filter(p=>{
     if(q && !((p.name+' '+p.city+' '+p.email).toLowerCase().includes(q))) return false;
     if(t && p.type!==t) return false;
@@ -1003,6 +973,7 @@ function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; 
 
 // Init user UI on load
 updateUserUI();
+render();
 </script>
 </body>
 </html>
