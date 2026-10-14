@@ -686,17 +686,13 @@ btn.style.display='none';
 cnt.textContent='Showing 20 of '+filteredPlaces.length+' places — Unlock to see all';
 }
 }
-else {
-alert('Invalid code. Please check the code you received after payment.');
-}
-}
 function loadMore(){
 visibleCount+=20;
 renderGrid();
 document.getElementById('opportunities').lastElementChild.scrollIntoView({behavior:'smooth',block:'nearest'});
 }
 function cardHTML(p){
-const email=p.email?'<div class="emailRow"><a href="mailto:'+p.email+'">'+p.email+'</a><button class="copyBtn" onclick="copyEmail(\''+p.email.replace(/'/g,"\\'")+'\',this)">Copy</button></div>':'<div class="emailRow"><span>No direct email — use website</span></div>';
+const email=p.email?'<div class="emailRow"><a href="mailto:'+p.email+'">'+p.email+'</a><button class="copyBtn" onclick="copyText(\''+p.email.replace(/'/g,"\\'")+'\')">Copy</button></div>':'<div class="emailRow"><span>No direct email — use website</span></div>';
 const web=p.web?'<a class="webLink" href="'+p.web+'" target="_blank" rel="noopener">Website</a>':'<span class="noWeb">No website listed</span>';
 const loc=[p.city,p.land].filter(Boolean).join(' · ');
 const tag=p.housing?'<span style="background:#FEF3C7;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700">🏠 Housing</span>':'';
