@@ -1,220 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-YG7RCK7GWC"></script>
-<script>
+<!doctype html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-YG7RCK7GWC"></script><script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-YG7RCK7GWC');
-</script>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="color-scheme" content="light dark"/>
-<link rel="icon" href="data:,"/>
-<title>FSJ/BFD Finder — Find Places, Emails & Websites in Germany</title>
-<style>
-:root{
---bg:#f6f7f4; --surface:#ffffff; --surface2:#eef2ee; --ink:#17201a; --muted:#6b7a6f; --line:#dde5dd;
---teal:#0e6b5e; --teal2:#0a4f45; --amber:#f2b705; --chip:#e8efe9;
---radius:14px;
-}
-@media (prefers-color-scheme:dark){
-:root{ --bg:#121613; --surface:#1c2420; --surface2:#232d28; --ink:#eef3ee; --muted:#a8b8ab; --line:#2e3a33; --teal:#2dd4bf; --teal2:#5eead4; --chip:#26332c; }
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
-a{color:var(--teal);text-decoration:none}
-a:hover{text-decoration:underline}
-.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
-.topInner{max-width:1020px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.logo{font-weight:800;letter-spacing:-.02em;font-size:17px}
-.logo small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:0}
-.pill{font-size:12px;font-weight:700;background:var(--chip);color:var(--ink);padding:6px 10px;border-radius:999px;white-space:nowrap;border:1px solid var(--line)}
-.wrap{max-width:1020px;margin:0 auto;padding:0 16px 32px}
-.hero { max-width: 850px; margin: 0 auto; padding: 80px 24px; text-align: center; font-family: Arial, sans-serif; }
-.hero-tag { color: #16a34a; font-size: 13px; font-weight: 700; letter-spacing: 3px; }
-.hero h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.1; margin: 20px 0; color: #111827; }
-.hero-subtitle { font-size: 20px; color: #374151; }
-.hero-description { max-width: 650px; margin: 20px auto 30px; font-size: 16px; line-height: 1.8; color: #6b7280; }
-.hero-button { display: inline-block; padding: 14px 26px; background: #16a34a; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; }
-.hero-button:hover { background: #15803d; text-decoration: none; }
-.hero-note { margin-top: 28px; color: #6b7280; font-size: 14px; }
-@media (prefers-color-scheme:dark){
-.hero h1{color:#f3f4f6}
-.hero-subtitle{color:#d1d5db}
-.hero-description,.hero-note{color:#9ca3af}
-}
-#opportunities{scroll-margin-top:84px}
-.langToggle{display:inline-flex;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:24px}
-.langToggle button{border:0;background:transparent;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--muted)}
-.langToggle button.active{background:#16a34a;color:#fff}
-.searchBox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px;display:flex;gap:8px;margin:16px 0 10px}
-.searchBox input{flex:1;border:0;outline:0;background:transparent;font-size:16px;padding:9px 10px;color:var(--ink);min-width:0}
-.searchBox button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:0 16px;font-weight:700;cursor:pointer;font-size:14px}
-.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 4px}
-.chip{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}
-.chip.active{background:var(--teal);color:#fff;border-color:var(--teal)}
-select{padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:13px;max-width:100%}
-.count{margin-left:auto;font-size:13px;color:var(--muted);font-weight:600}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.grid{grid-template-columns:1fr}}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}
-.card h3{margin:0;font-size:15.5px;line-height:1.3;letter-spacing:-.01em}
-.loc{font-size:13px;color:var(--muted)}
-.emailRow{display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 10px;min-width:0}
-.emailRow a{font-weight:600;font-size:13px;word-break:break-all;flex:1;min-width:0}
-.emailRow span{font-size:13px;color:var(--muted);flex:1}
-.copyBtn{flex-shrink:0;background:var(--ink);color:var(--bg);border:0;padding:6px 10px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer}
-.webLink{font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:5px}
-.webLink::after{content:"↗";font-size:12px;opacity:.7}
-.noWeb{font-size:13px;color:var(--muted)}
-.empty{grid-column:1/-1;text-align:center;padding:32px;background:var(--surface);border:1px dashed var(--line);border-radius:14px;color:var(--muted)}
-footer{margin-top:32px;padding:20px 0 8px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}
-footer .credit{color:var(--ink)}
-footer .credit b{font-weight:800}
-.insta{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:7px 12px;border-radius:999px}
-.insta:hover{text-decoration:none;border-color:var(--teal)}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:50}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* Nav tabs */
-.navTabs{display:flex;gap:8px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.navTabs button{padding:10px 20px;border:2px solid #7C3AED;background:#fff;color:#7C3AED;border-radius:999px;font-weight:700;cursor:pointer;font-size:14px}
-.navTabs button.active{background:#7C3AED;color:#fff}
-.navTabs button:hover{background:#EDE9FE}
-/* Login modal */
-.loginModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
-.loginModal.show{display:flex}
-.loginBox{background:#fff;border-radius:16px;padding:30px;width:90%;max-width:380px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}
-.loginBox h2{margin:0 0 8px;text-align:center;color:#7C3AED}
-.loginBox p{color:#6b7280;text-align:center;font-size:14px;margin:0 0 20px}
-.loginBox input{width:100%;padding:12px;border:2px solid #E5E7EB;border-radius:10px;margin-bottom:12px;font-size:15px;box-sizing:border-box}
-.loginBox input:focus{outline:none;border-color:#7C3AED}
-.loginBtn{width:100%;padding:13px;background:#7C3AED;color:#fff;border:0;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:10px}
-.loginBtn:hover{background:#6D28D9}
-.loginBtn.secondary{background:#fff;color:#7C3AED;border:2px solid #7C3AED}
-.loginClose{text-align:center;margin-top:12px;color:#6b7280;cursor:pointer;font-size:13px}
-/* Chat */
-.chatBox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:20px;max-width:700px;margin-left:auto;margin-right:auto}
-.chatMessages{height:300px;overflow-y:auto;border:1px solid #E5E7EB;border-radius:10px;padding:12px;margin-bottom:12px;background:#F9FAFB}
-.chatMsg{margin-bottom:10px;padding:8px 12px;background:#EDE9FE;border-radius:10px;max-width:80%}
-.chatMsg.own{background:#7C3AED;color:#fff;margin-left:auto}
-.chatMsg .sender{font-weight:700;font-size:12px;opacity:0.8}
-.chatMsg .text{font-size:14px;margin-top:2px}
-.chatInput{display:flex;gap:8px}
-.chatInput input{flex:1;padding:11px;border:2px solid #E5E7EB;border-radius:999px;font-size:14px}
-.chatInput button{padding:11px 20px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;cursor:pointer}
-.chatInput button:hover{background:#6D28D9}
-/* View More */
-.viewMoreWrap{text-align:center;margin:24px 0}
-.viewMoreBtn{padding:13px 32px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer}
-.viewMoreBtn:hover{background:#6D28D9}
-.viewMoreBtn:disabled{background:#D1D5DB;cursor:default}
-/* Page sections */
-.pageSection{display:none}
-.pageSection.active{display:block}
-.userBar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:10px 0;font-size:13px;color:#6b7280}
-.userBar b{color:#7C3AED}
-.logoutBtn{background:none;border:1px solid #E5E7EB;padding:5px 12px;border-radius:999px;cursor:pointer;font-size:12px;color:#6b7280}
-/* Paywall */
-.paywallCard{background:linear-gradient(135deg,#7C3AED,#A78BFA);color:#fff;border-radius:14px;padding:28px;text-align:center;margin-top:14px;grid-column:1/-1}
-.paywallCard h3{color:#fff;font-size:22px;margin:0 0 10px}
-.paywallCard p{color:#EDE9FE;font-size:15px;line-height:1.6;margin:0 0 18px}
-.unlockBtn{background:#fff;color:#7C3AED;border:0;padding:14px 32px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer}
-.unlockBtn:hover{background:#F3F4F6}
-.payModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}
-.payModal.show{display:flex}
-.payBox{background:#fff;border-radius:16px;padding:30px;width:90%;max-width:420px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-height:90vh;overflow-y:auto}
-.payBox h2{margin:0 0 8px;text-align:center;color:#7C3AED}
-.payBox .price{text-align:center;font-size:36px;font-weight:800;color:#111827;margin:10px 0}
-.payBox .price small{font-size:14px;color:#6b7280;font-weight:400}
-.payOption{background:#F9FAFB;border:2px solid #E5E7EB;border-radius:12px;padding:14px;margin-bottom:10px}
-.payOption h4{margin:0 0 6px;font-size:15px}
-.payOption p{margin:0;font-size:13px;color:#6b7280;line-height:1.5}
-.upiId{background:#EDE9FE;padding:8px 12px;border-radius:8px;font-weight:700;color:#7C3AED;text-align:center;margin:10px 0;font-size:16px}
-.payBox input{width:100%;padding:12px;border:2px solid #E5E7EB;border-radius:10px;margin:12px 0;font-size:15px;box-sizing:border-box}
-.payBox input:focus{outline:none;border-color:#7C3AED}
-.waBtn{display:block;text-align:center;background:#25D366;color:#fff;padding:13px;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:10px}
-.waBtn:hover{text-decoration:none;color:#fff}
-</style>
-</head>
-<body>
-<header class="top"><div class="topInner"><div class="logo">FSJ / BFD Finder<small>Germany · Freiwilligendienst</small></div><span class="pill" id="pillCount">44 places</span></div></header>
-<div class="userBar" id="userBar" style="display:none">
-<span>Logged in as <b id="userNameDisplay"></b></span>
-<button class="logoutBtn" onclick="logout()">Logout</button>
-</div>
-<div class="navTabs">
-<button class="active" onclick="showPage('directory', this)">📋 Directory</button>
-<button onclick="showPage('chat', this)">💬 Global Chat</button>
-<button onclick="showPage('login', this)" id="loginTabBtn">🔐 Login</button>
-</div>
-<!-- CHAT PAGE -->
-<div class="pageSection" id="chatPage">
-<div class="chatBox">
-<h2 style="margin:0 0 8px;color:#7C3AED">💬 Global Chat</h2>
-<p style="color:#6b7280;font-size:14px;margin:0 0 16px">Connect with other FSJ/BFD applicants. Share tips, ask questions.</p>
-<div id="chatLoginPrompt" style="text-align:center;padding:30px;background:#FEF3C7;border-radius:10px;margin-bottom:12px">
-<p style="margin:0 0 12px">Please login to chat.</p>
-<button class="loginBtn" style="width:auto;padding:10px 24px" onclick="openLogin()">Login / Sign Up</button>
-</div>
-<div id="chatArea" style="display:none">
-<div class="chatMessages" id="chatMessages"></div>
-<div class="chatInput">
-<input id="chatInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendChat()"/>
-<button onclick="sendChat()">Send</button>
-</div>
-</div>
-</div>
-</div>
-<!-- LOGIN MODAL -->
-<div class="loginModal" id="loginModal">
-<div class="loginBox">
-<h2>Welcome to FSJ Finder</h2>
-<p>Create an account or login to chat</p>
-<input id="loginName" type="text" placeholder="Your name"/>
-<input id="loginEmail" type="email" placeholder="Email address"/>
-<input id="loginPass" type="password" placeholder="Password"/>
-<button class="loginBtn" onclick="doLogin()">Login / Sign Up</button>
-<button class="loginBtn secondary" onclick="doGoogleLogin()">Continue with Google</button>
-<div class="loginClose" onclick="closeLogin()">Close</div>
-<p style="font-size:11px;color:#9CA3AF;margin-top:12px">Your account is saved on this device only. Chat messages are stored locally.</p>
-</div>
-</div>
-<div class="wrap" id="directoryPage">
-<section class="hero">
-<div class="langToggle" role="group" aria-label="Hero language">
-<button type="button" id="langEn" class="active">English</button>
-<button type="button" id="langMl">മലയാളം</button>
-</div>
-<p class="hero-tag">FSJ FINDER</p>
-<h1 id="heroH1">Germany Is Closer Than You Think.</h1>
-<p class="hero-subtitle" id="heroSub">Opportunities for volunteers from India and around the world.</p>
-<p class="hero-description" id="heroDesc">Find FSJ and BFD organisations, check their requirements, explore accommodation options and contact them directly. No agency required.</p>
-<a href="#opportunities" class="hero-button" id="heroBtn">Explore Opportunities →</a>
-<p class="hero-note" id="heroNote">Hospitals · Care Homes · Kitas · Volunteer Organisations</p>
-</section>
-<div class="searchBox">
-<input id="q" type="search" placeholder="Search name, city or email…" aria-label="Search places"/>
-<button onclick="document.getElementById('opportunities').scrollIntoView({behavior:'smooth'})">Search</button>
-</div>
-<div class="filters" id="filters">
-<select id="typeSel" aria-label="Filter by type"><option value="">All types</option></select>
-<select id="landSel" aria-label="Filter by state"><option value="">All states</option></select>
-<button class="chip" id="housingChip">Only with housing</button>
-<span class="count" id="count"></span>
-</div>
-<div class="grid" id="opportunities"></div><div class="viewMoreWrap"><button class="viewMoreBtn" id="viewMoreBtn" onclick="loadMore()">View More ↓</button><p id="showingCount" style="color:#6b7280;font-size:13px;margin-top:8px"></p></div>
-<footer>
-<span class="credit">Made by <b>Eldhose Bose</b></span>
-<a class="insta" href="https://www.instagram.com/eldhose.bose" target="_blank" rel="noopener">Instagram · @eldhose.bose</a>
-<span>Emails checked Oct 2026 — always re-check the organisation’s website before applying.</span>
-</footer>
-</div>
-<div class="toast" id="toast">Copied</div>
-<script>
+</script><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/><meta name="color-scheme" content="light dark"/><link rel="icon" href="data:,"/><title>FSJ/BFD Finder — Find Places, Emails & Websites in Germany</title><style>:root{--bg:#f6f7f4;--surface:#ffffff;--surface2:#eef2ee;--ink:#17201a;--muted:#6b7a6f;--line:#dde5dd;--teal:#0e6b5e;--teal2:#0a4f45;--amber:#f2b705;--chip:#e8efe9;--radius:14px;}@media (prefers-color-scheme:dark){:root{--bg:#121613;--surface:#1c2420;--surface2:#232d28;--ink:#eef3ee;--muted:#a8b8ab;--line:#2e3a33;--teal:#2dd4bf;--teal2:#5eead4;--chip:#26332c;}}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}.topInner{max-width:1020px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}.logo{font-weight:800;letter-spacing:-.02em;font-size:17px}.logo small{display:block;font-weight:500;color:var(--muted);font-size:11px;letter-spacing:0}.pill{font-size:12px;font-weight:700;background:var(--chip);color:var(--ink);padding:6px 10px;border-radius:999px;white-space:nowrap;border:1px solid var(--line)}.wrap{max-width:1020px;margin:0 auto;padding:0 16px 32px}.hero{max-width:850px;margin:0 auto;padding:80px 24px;text-align:center;font-family:Arial,sans-serif;}.hero-tag{color:#16a34a;font-size:13px;font-weight:700;letter-spacing:3px;}.hero h1{font-size:clamp(36px,6vw,64px);line-height:1.1;margin:20px 0;color:#111827;}.hero-subtitle{font-size:20px;color:#374151;}.hero-description{max-width:650px;margin:20px auto 30px;font-size:16px;line-height:1.8;color:#6b7280;}.hero-button{display:inline-block;padding:14px 26px;background:#16a34a;color:white;text-decoration:none;border-radius:8px;font-weight:600;}.hero-button:hover{background:#15803d;text-decoration:none;}.hero-note{margin-top:28px;color:#6b7280;font-size:14px;}@media (prefers-color-scheme:dark){.hero h1{color:#f3f4f6}.hero-subtitle{color:#d1d5db}.hero-description,.hero-note{color:#9ca3af}}#opportunities{scroll-margin-top:84px}.langToggle{display:inline-flex;gap:4px;background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:4px;margin-bottom:24px}.langToggle button{border:0;background:transparent;padding:7px 16px;border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer;color:var(--muted)}.langToggle button.active{background:#16a34a;color:#fff}.searchBox{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:6px;display:flex;gap:8px;margin:16px 0 10px}.searchBox input{flex:1;border:0;outline:0;background:transparent;font-size:16px;padding:9px 10px;color:var(--ink);min-width:0}.searchBox button{background:var(--teal);color:#fff;border:0;border-radius:8px;padding:0 16px;font-weight:700;cursor:pointer;font-size:14px}.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0 4px}.chip{border:1px solid var(--line);background:var(--surface);padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink)}.chip.active{background:var(--teal);color:#fff;border-color:var(--teal)}select{padding:8px 10px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:13px;max-width:100%}.count{margin-left:auto;font-size:13px;color:var(--muted);font-weight:600}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}@media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.grid{grid-template-columns:1fr}}.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;display:flex;flex-direction:column;gap:8px}.card h3{margin:0;font-size:15.5px;line-height:1.3;letter-spacing:-.01em}.loc{font-size:13px;color:var(--muted)}.emailRow{display:flex;align-items:center;gap:8px;background:var(--surface2);border-radius:8px;padding:8px 10px;min-width:0}.emailRow a{font-weight:600;font-size:13px;word-break:break-all;flex:1;min-width:0}.emailRow span{font-size:13px;color:var(--muted);flex:1}.copyBtn{flex-shrink:0;background:var(--ink);color:var(--bg);border:0;padding:6px 10px;border-radius:7px;font-size:12px;font-weight:700;cursor:pointer}.webLink{font-size:13.5px;font-weight:600;display:inline-flex;align-items:center;gap:5px}.webLink::after{content:"↗";font-size:12px;opacity:.7}.noWeb{font-size:13px;color:var(--muted)}.empty{grid-column:1/-1;text-align:center;padding:32px;background:var(--surface);border:1px dashed var(--line);border-radius:14px;color:var(--muted)}footer{margin-top:32px;padding:20px 0 8px;border-top:1px solid var(--line);color:var(--muted);font-size:13.5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;align-items:center}footer .credit{color:var(--ink)}footer .credit b{font-weight:800}.insta{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:var(--ink);background:var(--surface);border:1px solid var(--line);padding:7px 12px;border-radius:999px}.insta:hover{text-decoration:none;border-color:var(--teal)}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:10px 16px;border-radius:999px;font-weight:700;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}/* Nav tabs */
+.navTabs{display:flex;gap:8px;justify-content:center;margin:20px 0;flex-wrap:wrap}.navTabs button{padding:10px 20px;border:2px solid #7C3AED;background:#fff;color:#7C3AED;border-radius:999px;font-weight:700;cursor:pointer;font-size:14px}.navTabs button.active{background:#7C3AED;color:#fff}.navTabs button:hover{background:#EDE9FE}/* Login modal */
+.loginModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}.loginModal.show{display:flex}.loginBox{background:#fff;border-radius:16px;padding:30px;width:90%;max-width:380px;box-shadow:0 10px 40px rgba(0,0,0,0.2)}.loginBox h2{margin:0 0 8px;text-align:center;color:#7C3AED}.loginBox p{color:#6b7280;text-align:center;font-size:14px;margin:0 0 20px}.loginBox input{width:100%;padding:12px;border:2px solid #E5E7EB;border-radius:10px;margin-bottom:12px;font-size:15px;box-sizing:border-box}.loginBox input:focus{outline:none;border-color:#7C3AED}.loginBtn{width:100%;padding:13px;background:#7C3AED;color:#fff;border:0;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;margin-bottom:10px}.loginBtn:hover{background:#6D28D9}.loginBtn.secondary{background:#fff;color:#7C3AED;border:2px solid #7C3AED}.loginClose{text-align:center;margin-top:12px;color:#6b7280;cursor:pointer;font-size:13px}/* Chat */
+.chatBox{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:20px;max-width:700px;margin-left:auto;margin-right:auto}.chatMessages{height:300px;overflow-y:auto;border:1px solid #E5E7EB;border-radius:10px;padding:12px;margin-bottom:12px;background:#F9FAFB}.chatMsg{margin-bottom:10px;padding:8px 12px;background:#EDE9FE;border-radius:10px;max-width:80%}.chatMsg.own{background:#7C3AED;color:#fff;margin-left:auto}.chatMsg .sender{font-weight:700;font-size:12px;opacity:0.8}.chatMsg .text{font-size:14px;margin-top:2px}.chatInput{display:flex;gap:8px}.chatInput input{flex:1;padding:11px;border:2px solid #E5E7EB;border-radius:999px;font-size:14px}.chatInput button{padding:11px 20px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;cursor:pointer}.chatInput button:hover{background:#6D28D9}/* View More */
+.viewMoreWrap{text-align:center;margin:24px 0}.viewMoreBtn{padding:13px 32px;background:#7C3AED;color:#fff;border:0;border-radius:999px;font-weight:700;font-size:15px;cursor:pointer}.viewMoreBtn:hover{background:#6D28D9}.viewMoreBtn:disabled{background:#D1D5DB;cursor:default}/* Page sections */
+.pageSection{display:none}.pageSection.active{display:block}.userBar{display:flex;align-items:center;gap:10px;justify-content:flex-end;margin:10px 0;font-size:13px;color:#6b7280}.userBar b{color:#7C3AED}.logoutBtn{background:none;border:1px solid #E5E7EB;padding:5px 12px;border-radius:999px;cursor:pointer;font-size:12px;color:#6b7280}/* Paywall */
+.paywallCard{background:linear-gradient(135deg,#7C3AED,#A78BFA);color:#fff;border-radius:14px;padding:28px;text-align:center;margin-top:14px;grid-column:1/-1}.paywallCard h3{color:#fff;font-size:22px;margin:0 0 10px}.paywallCard p{color:#EDE9FE;font-size:15px;line-height:1.6;margin:0 0 18px}.unlockBtn{background:#fff;color:#7C3AED;border:0;padding:14px 32px;border-radius:999px;font-weight:800;font-size:16px;cursor:pointer}.unlockBtn:hover{background:#F3F4F6}.payModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:100;align-items:center;justify-content:center}.payModal.show{display:flex}.payBox{background:#fff;border-radius:16px;padding:30px;width:90%;max-width:420px;box-shadow:0 10px 40px rgba(0,0,0,0.2);max-height:90vh;overflow-y:auto}.payBox h2{margin:0 0 8px;text-align:center;color:#7C3AED}.payBox .price{text-align:center;font-size:36px;font-weight:800;color:#111827;margin:10px 0}.payBox .price small{font-size:14px;color:#6b7280;font-weight:400}.payOption{background:#F9FAFB;border:2px solid #E5E7EB;border-radius:12px;padding:14px;margin-bottom:10px}.payOption h4{margin:0 0 6px;font-size:15px}.payOption p{margin:0;font-size:13px;color:#6b7280;line-height:1.5}.upiId{background:#EDE9FE;padding:8px 12px;border-radius:8px;font-weight:700;color:#7C3AED;text-align:center;margin:10px 0;font-size:16px}.payBox input{width:100%;padding:12px;border:2px solid #E5E7EB;border-radius:10px;margin:12px 0;font-size:15px;box-sizing:border-box}.payBox input:focus{outline:none;border-color:#7C3AED}.waBtn{display:block;text-align:center;background:#25D366;color:#fff;padding:13px;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:10px}.waBtn:hover{text-decoration:none;color:#fff}</style></head><body><header class="top"><div class="topInner"><div class="logo">FSJ / BFD Finder<small>Germany · Freiwilligendienst</small></div><span class="pill" id="pillCount">44 places</span></div></header><div class="userBar" id="userBar" style="display:none"><span>Logged in as <b id="userNameDisplay"></b></span><button class="logoutBtn" onclick="logout()">Logout</button></div><div class="navTabs"><button class="active" onclick="showPage('directory', this)">📋 Directory</button><button onclick="showPage('chat', this)">💬 Global Chat</button><button onclick="showPage('login', this)" id="loginTabBtn">🔐 Login</button></div><div class="pageSection" id="chatPage"><div class="chatBox"><h2 style="margin:0 0 8px;color:#7C3AED">💬 Global Chat</h2><p style="color:#6b7280;font-size:14px;margin:0 0 16px">Connect with other FSJ/BFD applicants. Share tips, ask questions.</p><div id="chatLoginPrompt" style="text-align:center;padding:30px;background:#FEF3C7;border-radius:10px;margin-bottom:12px"><p style="margin:0 0 12px">Please login to chat.</p><button class="loginBtn" style="width:auto;padding:10px 24px" onclick="openLogin()">Login / Sign Up</button></div><div id="chatArea" style="display:none"><div class="chatMessages" id="chatMessages"></div><div class="chatInput"><input id="chatInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendChat()"/><button onclick="sendChat()">Send</button></div></div></div></div><div class="loginModal" id="loginModal"><div class="loginBox"><h2>Welcome to FSJ Finder</h2><p>Create an account or login to chat</p><input id="loginName" type="text" placeholder="Your name"/><input id="loginEmail" type="email" placeholder="Email address"/><input id="loginPass" type="password" placeholder="Password"/><button class="loginBtn" onclick="doLogin()">Login / Sign Up</button><button class="loginBtn secondary" onclick="doGoogleLogin()">Continue with Google</button><div class="loginClose" onclick="closeLogin()">Close</div><p style="font-size:11px;color:#9CA3AF;margin-top:12px">Your account is saved on this device only. Chat messages are stored locally.</p></div></div><div class="wrap" id="directoryPage"><section class="hero"><div class="langToggle" role="group" aria-label="Hero language"><button type="button" id="langEn" class="active">English</button><button type="button" id="langMl">മലയാളം</button></div><p class="hero-tag">FSJ FINDER</p><h1 id="heroH1">Germany Is Closer Than You Think.</h1><p class="hero-subtitle" id="heroSub">Opportunities for volunteers from India and around the world.</p><p class="hero-description" id="heroDesc">Find FSJ and BFD organisations, check their requirements, explore accommodation options and contact them directly. No agency required.</p><a href="#opportunities" class="hero-button" id="heroBtn">Explore Opportunities →</a><p class="hero-note" id="heroNote">Hospitals · Care Homes · Kitas · Volunteer Organisations</p></section><div class="searchBox"><input id="q" type="search" placeholder="Search name, city or email…" aria-label="Search places"/><button onclick="document.getElementById('opportunities').scrollIntoView({behavior:'smooth'})">Search</button></div><div class="filters" id="filters"><select id="typeSel" aria-label="Filter by type"><option value="">All types</option></select><select id="landSel" aria-label="Filter by state"><option value="">All states</option></select><button class="chip" id="housingChip">Only with housing</button><span class="count" id="count"></span></div><div class="grid" id="opportunities"></div><div class="viewMoreWrap"><button class="viewMoreBtn" id="viewMoreBtn" onclick="loadMore()">View More ↓</button><p id="showingCount" style="color:#6b7280;font-size:13px;margin-top:8px"></p></div><footer><span class="credit">Made by <b>Eldhose Bose</b></span><a class="insta" href="https://www.instagram.com/eldhose.bose" target="_blank" rel="noopener">Instagram · @eldhose.bose</a><span>Emails checked Oct 2026 — always re-check the organisation’s website before applying.</span></footer></div><div class="toast" id="toast">Copied</div><script>
 const PLACES=[
 {name:"UKSH — Lübeck (Pflege)",city:"Lübeck",land:"Schleswig-Holstein",type:"Hospital",email:"karriere@uksh.de",web:"https://jobs.uksh.de",note:"FSJ/BFD Pflege · 595 €/month · 30 days vacation · Job ID 21565",housing:false},
 {name:"UKSH — Kiel (Pflege)",city:"Kiel",land:"Schleswig-Holstein",type:"Hospital",email:"karriere@uksh.de",web:"https://jobs.uksh.de",note:"FSJ/BFD Pflege · 595 €/month · Job ID 27700 · Contact: Jutta Rohwer-Rosenow",housing:false},
@@ -868,7 +663,6 @@ renderGrid();
 document.getElementById('count').textContent=filteredPlaces.length+' places';
 document.getElementById('pillCount').textContent=PLACES.length+' places';
 }
-
 function renderGrid(){
 const grid=document.getElementById('opportunities');
 const unlocked = isUnlocked();
@@ -892,7 +686,7 @@ btn.style.display='none';
 cnt.textContent='Showing 20 of '+filteredPlaces.length+' places — Unlock to see all';
 }
 }
- else {
+else {
 alert('Invalid code. Please check the code you received after payment.');
 }
 }
@@ -1003,33 +797,4 @@ function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; 
 // Init user UI on load
 updateUserUI();
 render();
-</script>
-<!-- PAYWALL MODAL -->
-<div class="payModal" id="payModal">
-<div class="payBox">
-<h2>🔓 Unlock All Contacts</h2>
-<p style="text-align:center;color:#6b7280;font-size:14px;margin:0">Get access to all 596 FSJ/BFD employer contacts</p>
-<div class="price">₹499 <small>one-time payment</small></div>
-<div class="payOption">
-<h4>📱 Step 1: Pay via UPI</h4>
-<p>Pay ₹499 to this UPI ID using GPay, PhonePe, or Paytm:</p>
-<div class="upiId">eldhosebose7@okhdfcbank</div>
-<p style="text-align:center;font-size:12px">Or scan QR in WhatsApp</p>
-</div>
-<div class="payOption">
-<h4>📸 Step 2: Send Payment Screenshot</h4>
-<p>Send your payment screenshot on WhatsApp to get your unlock code.</p>
-</div>
-<a class="waBtn" href="https://wa.me/917902674237?text=Hi%2C%20I%20paid%20%C2%B9499%20for%20FSJ%20Finder.%20Here%20is%20my%20screenshot." target="_blank">📱 Send Screenshot on WhatsApp</a>
-<div class="payOption">
-<h4>🔑 Step 3: Enter Unlock Code</h4>
-<p>Enter the code you received after payment:</p>
-<input id="unlockCode" type="text" placeholder="Enter unlock code"/>
-<button class="loginBtn" onclick="unlockWithCode()">Unlock Now</button>
-</div>
-<div style="text-align:center;margin-top:12px;color:#6b7280;cursor:pointer;font-size:13px" onclick="closePayModal()">Close</div>
-</div>
-</div>
-<script src="paywall.js"></script>
-</body>
-</html>
+</script><div class="payModal" id="payModal"><div class="payBox"><h2>🔓 Unlock All Contacts</h2><p style="text-align:center;color:#6b7280;font-size:14px;margin:0">Get access to all 596 FSJ/BFD employer contacts</p><div class="price">₹499 <small>one-time payment</small></div><div class="payOption"><h4>📱 Step 1: Pay via UPI</h4><p>Pay ₹499 to this UPI ID using GPay, PhonePe, or Paytm:</p><div class="upiId">eldhosebose7-4@oksbi</div><p style="text-align:center;font-size:12px">Or scan QR in WhatsApp</p></div><div class="payOption"><h4>📸 Step 2: Send Payment Screenshot</h4><p>Send your payment screenshot on WhatsApp to get your unlock code.</p></div><a class="waBtn" href="https://wa.me/917902674237?text=Hi%2C%20I%20paid%20%C2%B9499%20for%20FSJ%20Finder.%20Here%20is%20my%20screenshot." target="_blank">📱 Send Screenshot on WhatsApp</a><div class="payOption"><h4>🔑 Step 3: Enter Unlock Code</h4><p>Enter the code you received after payment:</p><input id="unlockCode" type="text" placeholder="Enter unlock code"/><button class="loginBtn" onclick="unlockWithCode()">Unlock Now</button></div><div style="text-align:center;margin-top:12px;color:#6b7280;cursor:pointer;font-size:13px" onclick="closePayModal()">Close</div></div></div><script src="paywall.js"></script></body></html>
