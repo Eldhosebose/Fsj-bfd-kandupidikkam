@@ -1,8 +1,15 @@
 function isUnlocked(){ return localStorage.getItem('fsj_unlocked') === 'yes'; }
 function openPayModal(){ document.getElementById('payModal').classList.add('show'); }
 function closePayModal(){ document.getElementById('payModal').classList.remove('show'); }
+// Revoked codes - these will no longer work for new unlocks
+var REVOKED_CODES = ['FSJ-NOWX-HXUC'];
 function unlockWithCode(){
   const code=document.getElementById('unlockCode').value.trim().toUpperCase();
+  // Check if code has been revoked
+  if(REVOKED_CODES.indexOf(code) !== -1){
+    alert('This code has been revoked. Please contact support.');
+    return;
+  }
   // Pattern-based validation: code must be FSJ-XXXX-YYYY where XXXX and YYYY are alphanumeric
   // Eldhose generates unique codes for each buyer (e.g., FSJ-A7B3-K9M2)
   // No hardcoded list in source - codes are generated per-buyer
