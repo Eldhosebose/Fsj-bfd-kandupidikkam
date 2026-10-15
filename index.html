@@ -21,10 +21,41 @@ gtag('config', 'G-YG7RCK7GWC');
 /* UPI Pay Button */
 .upiPayBtn{display:block;text-align:center;background:#7C3AED;color:#fff;padding:14px 24px;border-radius:12px;font-weight:700;text-decoration:none;font-size:16px;margin:12px 0}
 .upiPayBtn:hover{background:#6D28D9;color:#fff;text-decoration:none}
+
+/* Example Email Section */
+.exampleSection{background:#fff;border-radius:14px;padding:24px;margin:20px 0;border:1px solid #E5E7EB}
+.exampleSection h3{color:#7C3AED;margin:0 0 12px;font-size:18px;text-align:center}
+.exampleEmail{background:#F9FAFB;border:1px solid #E5E7EB;border-radius:10px;padding:16px;font-size:14px;line-height:1.6;color:#374151;margin:12px 0}
+.exampleEmail .subject{font-weight:700;color:#111827;margin-bottom:8px}
+.exampleEmail .body{white-space:pre-line}
+.exampleNote{text-align:center;color:#6b7280;font-size:13px;margin-top:12px}
 </style></head><body>
 <div style="background:#25D366;text-align:center;padding:10px;position:sticky;top:0;z-index:50">
   <a href="https://chat.whatsapp.com/BXmMT3rSgAVD5bRZuZA7Jb?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener" style="color:#fff;font-weight:700;text-decoration:none;font-size:15px">📱 Join Our WhatsApp Group — Connect with FSJ/BFD Applicants!</a>
 </div>
+
+<div class="exampleSection">
+  <h3>📧 Example Application Email</h3>
+  <p style="text-align:center;color:#6b7280;font-size:14px;margin:0 0 12px">Here's the exact template I used to send 700+ applications:</p>
+  <div class="exampleEmail">
+    <div class="subject">Subject: Bewerbung für FSJ/BFD – Eldhose Bose</div>
+    <div class="body">Sehr geehrte Damen und Herren,
+
+ich bewerbe mich für ein Freiwilliges Soziales Jahr (FSJ) oder einen Bundesfreiwilligendienst (BFD) in Ihrem Haus, gerne in der Pflege, flexibel ab Dezember 2026 bis Mai 2027.
+
+Kurz zu mir: Ich bin 20 Jahre alt, komme aus Indien (Ernakulam, Kerala) und habe ein Jahr als Mitarbeiter im Pflegebereich in einem Krankenhaus gearbeitet. Zusätzlich habe ich mich im National Service Scheme (NSS) sozial engagiert, unter anderem in Altenheimen. Deutsch: B2-Zertifikat.
+
+Anbei sende ich Ihnen meinen Lebenslauf, meine Motivationsschreiben und ein Bewerbungsfoto.
+
+Über eine Rückmeldung würde ich mich sehr freuen.
+
+Mit freundlichen Grüßen
+Eldhose Bose
+Tel: +91 79026 74237 | eldhosebose7@gmail.com</div>
+  </div>
+  <p class="exampleNote">✅ Copy the email addresses from below, personalize this template, attach your CV & letters, and send!</p>
+</div>
+
 <header class="top"><div class="topInner"><div class="logo">FSJ / BFD Finder<small>Germany · Freiwilligendienst</small></div><span class="pill" id="pillCount">44 places</span></div></header><div class="userBar" id="userBar" style="display:none"><span>Logged in as <b id="userNameDisplay"></b></span><button class="logoutBtn" onclick="logout()">Logout</button></div><div class="navTabs"><button class="active" onclick="showPage('directory', this)">📋 Directory</button><button onclick="showPage('chat', this)">💬 Global Chat</button><button onclick="showPage('login', this)" id="loginTabBtn">🔐 Login</button></div><div class="pageSection" id="chatPage"><div class="chatBox"><h2 style="margin:0 0 8px;color:#7C3AED">💬 Global Chat</h2><p style="color:#6b7280;font-size:14px;margin:0 0 16px">Connect with other FSJ/BFD applicants. Share tips, ask questions.</p><div id="chatLoginPrompt" style="text-align:center;padding:30px;background:#FEF3C7;border-radius:10px;margin-bottom:12px"><p style="margin:0 0 12px">Please login to chat.</p><button class="loginBtn" style="width:auto;padding:10px 24px" onclick="openLogin()">Login / Sign Up</button></div><div id="chatArea" style="display:none"><div class="chatMessages" id="chatMessages"></div><div class="chatInput"><input id="chatInput" type="text" placeholder="Type your message..." onkeypress="if(event.key==='Enter')sendChat()"/><button onclick="sendChat()">Send</button></div></div></div></div><div class="loginModal" id="loginModal"><div class="loginBox"><h2>Welcome to FSJ Finder</h2><p>Create an account or login to chat</p><input id="loginName" type="text" placeholder="Your name"/><input id="loginEmail" type="email" placeholder="Email address"/><input id="loginPass" type="password" placeholder="Password"/><button class="loginBtn" onclick="doLogin()">Login / Sign Up</button><button class="loginBtn secondary" onclick="doGoogleLogin()">Continue with Google</button><div class="loginClose" onclick="closeLogin()">Close</div><p style="font-size:11px;color:#9CA3AF;margin-top:12px">Your account is saved on this device only. Chat messages are stored locally.</p></div></div><div class="wrap" id="directoryPage"><section class="hero"><div class="langToggle" role="group" aria-label="Hero language"><button type="button" id="langEn" class="active">English</button><button type="button" id="langMl">മലയാളം</button></div><p class="hero-tag">FSJ FINDER</p><h1 id="heroH1">Germany Is Closer Than You Think.</h1><p class="hero-subtitle" id="heroSub">Opportunities for volunteers from India and around the world.</p><p class="hero-description" id="heroDesc">Find FSJ and BFD organisations, check their requirements, explore accommodation options and contact them directly. No agency required.</p><a href="#opportunities" class="hero-button" id="heroBtn">Explore Opportunities →</a><p class="hero-note" id="heroNote">Hospitals · Care Homes · Kitas · Volunteer Organisations</p></section>
 <div class="searchBox"><input id="q" type="search" placeholder="Search name, city or email…" aria-label="Search places"/><button onclick="document.getElementById('opportunities').scrollIntoView({behavior:'smooth'})">Search</button></div><div class="filters" id="filters"><select id="typeSel" aria-label="Filter by type"><option value="">All types</option></select><select id="landSel" aria-label="Filter by state"><option value="">All states</option></select><button class="chip" id="housingChip">Only with housing</button><span class="count" id="count"></span></div><div class="grid" id="opportunities"></div><div class="viewMoreWrap"><button class="viewMoreBtn" id="viewMoreBtn" onclick="loadMore()">View More ↓</button><p id="showingCount" style="color:#6b7280;font-size:13px;margin-top:8px"></p></div><footer><span class="credit">Made by <b>Eldhose Bose</b></span><a class="insta" href="https://www.instagram.com/eldhose.bose" target="_blank" rel="noopener">Instagram · @eldhose.bose</a><span>Emails checked Oct 2026 — always re-check the organisation’s website before applying.</span></footer></div><div class="toast" id="toast">Copied</div><script>
 // PLACES loaded from places.js
