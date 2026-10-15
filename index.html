@@ -693,6 +693,7 @@ footer a { color: var(--red); }
 .listing { position: relative; }
 .contact-row { display: flex; gap: 8px; margin-top: 10px; }
 .contact-row a { flex: 1; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 13px; }
+.tag.newtag { background: var(--red); color: #fff; }
 </style>
 </head>
 <body>
@@ -778,6 +779,10 @@ footer a { color: var(--red); }
             <option value="yes">Housing available</option>
             <option value="unknown">Not confirmed</option>
             <option value="no">No housing</option>
+          </select>
+          <select id="newFilter" aria-label="Filter newly added" style="grid-column: 1 / -1;">
+            <option value="">All listings</option>
+            <option value="new">🆕 Newly added this week</option>
           </select>
         </div>
       </form>
@@ -1074,6 +1079,14 @@ document.addEventListener("DOMContentLoaded", () => {
     return '<span class="tag unknown">⌂ Not confirmed</span>';
   }
   function housingVal(h) { return h === true ? "yes" : (h === false ? "no" : "unknown"); }
+  function isNew(p){
+    if(!p.added) return false;
+    const d = new Date(p.added + "T00:00:00");
+    if (isNaN(d)) return false;
+    const days = (Date.now() - d.getTime()) / 86400000;
+    return days >= 0 && days <= 8;
+  }
+  function newBadge(p){ return isNew(p) ? '<span class="tag newtag">🆕 NEW</span>' : ''; }
 
   function cardHTML(p, idx) {
     const searchStr = [p.name, p.city, p.land, p.type, p.email].join(" ").toLowerCase();
@@ -1083,7 +1096,7 @@ document.addEventListener("DOMContentLoaded", () => {
         '<h3>' + esc(p.name) + '</h3>' +
         '<div class="location">⌖ ' + esc(p.city) + (p.land ? ", " + esc(p.land) : "") + '</div>' +
         '<div class="listing-email">✉ ' + esc(p.email) + '</div>' +
-        '<div class="tags">' + housingTag(p.housing) + '</div>' +
+        '<div class="tags">' + housingTag(p.housing) + newBadge(p) + '</div>' +
         '<button class="bkm" type="button" data-idx="' + idx + '" aria-label="Save">☆</button>' +
       '<div class="listing-bottom"><div class="card-actions">' +
           '<button class="copy-btn-sm" type="button" data-email="' + esc(p.email) + '">⧉ Copy email</button>' +
@@ -1098,12 +1111,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const q = (searchInput?.value || "").trim().toLowerCase();
     const t = typeFilter?.value || "";
     const h = housingFilter?.value || "";
+    const nf = (document.getElementById("newFilter") || {}).value || "";
 
     currentFiltered = (typeof PLACES !== "undefined" ? PLACES : []).filter(p => {
       const s = [p.name, p.city, p.land, p.type, p.email].join(" ").toLowerCase();
       if (q && !s.includes(q)) return false;
       if (t && p.type !== t) return false;
       if (h && housingVal(p.housing) !== h) return false;
+      if (nf === "new" && !isNew(p)) return false;
       return true;
     });
 
@@ -1124,9 +1139,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     listingContainer.innerHTML = html;
     emptyState.style.display = currentFiltered.length === 0 ? "block" : "none";
+    const newCount = currentFiltered.filter(isNew).length;
+    const newTxt = newCount ? " · 🆕 " + newCount + " new this week" : "";
     resultsCount.textContent = unlocked
-      ? currentFiltered.length + " placement" + (currentFiltered.length === 1 ? "" : "s") + " found"
-      : "Showing " + showCount + " of " + currentFiltered.length + " placements — first " + FREE_LIMIT + " free";
+      ? currentFiltered.length + " placement" + (currentFiltered.length === 1 ? "" : "s") + " found" + newTxt
+      : "Showing " + showCount + " of " + currentFiltered.length + " placements — first " + FREE_LIMIT + " free" + newTxt;
 
     // wire copy buttons
     listingContainer.querySelectorAll(".copy-btn-sm").forEach(b => {
@@ -1205,12 +1222,13 @@ document.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener("input", renderListings);
   typeFilter.addEventListener("change", renderListings);
   housingFilter.addEventListener("change", renderListings);
+  document.getElementById("newFilter").addEventListener("change", renderListings);
   document.getElementById("exploreBtn").addEventListener("click", () => {
     document.getElementById("searchPanel").scrollIntoView({ behavior: "smooth" });
   });
   document.getElementById("viewAllBtn").addEventListener("click", e => {
     e.preventDefault();
-    searchInput.value = ""; typeFilter.value = ""; housingFilter.value = "";
+    searchInput.value = ""; typeFilter.value = ""; housingFilter.value = ""; document.getElementById("newFilter").value = "";
     renderListings();
     document.getElementById("opportunities").scrollIntoView({ behavior: "smooth" });
   });
