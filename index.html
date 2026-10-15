@@ -646,6 +646,53 @@ footer a { color: var(--red); }
   .benefit strong { font-size: 10px; }
   .benefit p { font-size: 9px; }
 }
+
+/* Menu modal */
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.menu-opt {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 4px;
+  padding: 14px; border: 1px solid var(--line); border-radius: 14px;
+  background: #fff; text-align: left;
+}
+.menu-opt:active { background: var(--soft); }
+.menu-opt .ico { font-size: 24px; }
+.menu-opt strong { font-size: 13px; }
+.menu-opt span { font-size: 11px; color: var(--muted); }
+/* Saved */
+.saved-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px; border: 1px solid var(--line); border-radius: 12px; margin-bottom: 8px;
+}
+.saved-item .info { flex: 1; min-width: 0; }
+.saved-item .info strong { display: block; font-size: 13px; }
+.saved-item .info span { font-size: 11px; color: var(--muted); }
+.saved-item button { border: 0; background: var(--red-soft); color: var(--red); border-radius: 8px; padding: 8px 10px; font-size: 12px; font-weight: 700; }
+/* Template tabs */
+.tpl-tabs { display: flex; gap: 6px; margin: 12px 0; flex-wrap: wrap; }
+.tpl-tabs button {
+  border: 1px solid var(--line); background: #fff; border-radius: 20px;
+  padding: 8px 14px; font-size: 12px; font-weight: 700;
+}
+.tpl-tabs button.active { background: var(--red); color: #fff; border-color: var(--red); }
+.lang-tabs { display: flex; gap: 6px; margin: 0 0 10px; }
+.lang-tabs button {
+  border: 1px solid var(--line); background: #fff; border-radius: 20px;
+  padding: 6px 12px; font-size: 11px; font-weight: 700;
+}
+.lang-tabs button.active { background: var(--yellow); border-color: var(--yellow); }
+.tpl-field { margin-bottom: 10px; }
+.tpl-field label { display: block; font-size: 12px; font-weight: 700; margin-bottom: 4px; color: var(--muted); }
+.tpl-field input, .tpl-field textarea, .tpl-field select {
+  width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 10px; font-size: 13px;
+}
+.tpl-field textarea { min-height: 180px; line-height: 1.6; resize: vertical; }
+/* Form */
+.form-grid { display: grid; gap: 10px; margin-top: 10px; }
+/* Bookmark */
+.bkm { position: absolute; top: 8px; right: 8px; border: 0; background: #ffffffee; border-radius: 50%; width: 34px; height: 34px; font-size: 17px; box-shadow: 0 2px 8px #0002; }
+.listing { position: relative; }
+.contact-row { display: flex; gap: 8px; margin-top: 10px; }
+.contact-row a { flex: 1; text-align: center; padding: 12px; border-radius: 10px; font-weight: 700; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -677,34 +724,33 @@ footer a { color: var(--red); }
       <button id="englishBtn" class="active" type="button">EN</button>
       <button id="malayalamBtn" type="button">മലയാളം</button>
     </div>
-    <button class="menu" id="menuBtn" aria-label="Go to search" type="button">☰</button>
+    <button class="menu" id="menuBtn" aria-label="Open menu" type="button">⋮</button>
   </header>
 
   <main>
     <section class="hero" id="home">
       <p class="eyebrow">VOLUNTEER &nbsp; • &nbsp; GAIN EXPERIENCE &nbsp; • &nbsp; MAKE A DIFFERENCE</p>
-      <h1>Find your FSJ or BFD <span class="red">in Germany</span></h1>
+      <h1><span data-i18n="hero_h1a">Find your FSJ or BFD</span> <span class="red" data-i18n="hero_h1b">in Germany</span></h1>
       <p class="hero-copy">
-        Hospitals, care homes, Kitas and volunteer organisations.
-        Find contacts and apply directly. No agency required.
+        <span data-i18n="hero_copy">Hospitals, care homes, Kitas and volunteer organisations. Find contacts and apply directly. No agency required.</span>
       </p>
       <button class="primary-btn" id="exploreBtn" type="button">
-        <span>⌕</span> Explore placements <span class="arrow">→</span>
+        <span>⌕</span> <span data-i18n="explore">Explore placements</span> <span class="arrow">→</span>
       </button>
     </section>
 
     <section class="benefits" aria-label="Benefits">
       <div class="benefit">
         <div class="benefit-icon">✉</div>
-        <div><strong>Direct contact</strong><p>Official contact details</p></div>
+        <div><strong data-i18n="b1t">Direct contact</strong><p data-i18n="b1p">Official contact details</p></div>
       </div>
       <div class="benefit">
         <div class="benefit-icon">⌂</div>
-        <div><strong>Housing info</strong><p>Check if accommodation is available</p></div>
+        <div><strong data-i18n="b2t">Housing info</strong><p data-i18n="b2p">Check if accommodation is available</p></div>
       </div>
       <div class="benefit">
         <div class="benefit-icon">◎</div>
-        <div><strong>International applicants</strong><p>Opportunities for applicants worldwide</p></div>
+        <div><strong data-i18n="b3t">International applicants</strong><p data-i18n="b3p">Opportunities for applicants worldwide</p></div>
       </div>
     </section>
 
@@ -714,10 +760,10 @@ footer a { color: var(--red); }
           <label class="search-input">
             <span>⌕</span>
             <input id="searchInput" type="search"
-              placeholder="Search city, hospital or organisation..."
+              data-i18n-ph="search_ph" placeholder="Search city, hospital or organisation..."
               aria-label="Search city, hospital or organisation">
           </label>
-          <button class="search-submit" type="submit">Search</button>
+          <button class="search-submit" type="submit" data-i18n="search_btn">Search</button>
         </div>
         <div class="filters">
           <select id="typeFilter" aria-label="Filter placement type">
@@ -760,8 +806,8 @@ Tel: [Your Phone] | [Your Email]</div>
     </div>
 
     <div class="section-head" id="opportunities">
-      <h2>Latest opportunities</h2>
-      <a class="text-link" href="#opportunities" id="viewAllBtn">View all →</a>
+      <h2 data-i18n="latest">Latest opportunities</h2>
+      <a class="text-link" href="#opportunities" id="viewAllBtn" data-i18n="view_all">View all →</a>
     </div>
     <p class="results-count" id="resultsCount">Loading placements...</p>
 
@@ -850,6 +896,117 @@ Tel: [Your Phone] | [Your Email]</div>
   </div>
 </div>
 
+
+<!-- Main menu modal -->
+<div class="modal-backdrop" id="menuModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 data-i18n="menu_title">Menu</h2>
+      <button class="close-modal" id="closeMenu" type="button">×</button>
+    </div>
+    <div class="menu-grid">
+      <button class="menu-opt" id="mSaved" type="button"><span class="ico">🔖</span><strong data-i18n="m_saved">Saved Placements</strong><span data-i18n="m_saved_s">Your bookmarked places</span></button>
+      <button class="menu-opt" id="mTemplates" type="button"><span class="ico">✉️</span><strong data-i18n="m_tpl">Email Templates</strong><span data-i18n="m_tpl_s">FSJ · BFD · Ausbildung</span></button>
+      <button class="menu-opt" id="mOffer" type="button"><span class="ico">🏢</span><strong data-i18n="m_offer">Offer a Placement</strong><span data-i18n="m_offer_s">Are you an organisation?</span></button>
+      <button class="menu-opt" id="mKnow" type="button"><span class="ico">💡</span><strong data-i18n="m_know">Know a Placement?</strong><span data-i18n="m_know_s">Suggest one you found</span></button>
+      <button class="menu-opt" id="mContact" type="button"><span class="ico">📞</span><strong data-i18n="m_contact">Contact Us</strong><span data-i18n="m_contact_s">Questions? Talk to us</span></button>
+      <button class="menu-opt" id="mAbout" type="button"><span class="ico">ℹ️</span><strong data-i18n="m_about">About Deutschweg</strong><span data-i18n="m_about_s">What this is</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Saved placements modal -->
+<div class="modal-backdrop" id="savedModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 data-i18n="saved_title">🔖 Saved Placements</h2>
+      <button class="close-modal" id="closeSaved" type="button">×</button>
+    </div>
+    <p data-i18n="saved_sub">Saved on this device only.</p>
+    <div id="savedList"></div>
+  </div>
+</div>
+
+<!-- Email templates modal -->
+<div class="modal-backdrop" id="tplModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 data-i18n="tpl_title">✉️ Email Templates</h2>
+      <button class="close-modal" id="closeTpl" type="button">×</button>
+    </div>
+    <div class="tpl-tabs">
+      <button type="button" data-tpl="fsj" class="active">FSJ</button>
+      <button type="button" data-tpl="bfd">BFD</button>
+      <button type="button" data-tpl="ausbildung" data-i18n="tpl_aus">Ausbildung</button>
+    </div>
+    <div class="lang-tabs">
+      <button type="button" data-tpllang="en" class="active">English guide</button>
+      <button type="button" data-tpllang="ml">മലയാളം</button>
+    </div>
+    <p id="tplGuide" style="font-size:12px"></p>
+    <div class="tpl-field"><label data-i18n="tpl_subject">Subject</label><input id="tplSubject" type="text"></div>
+    <div class="tpl-field"><label data-i18n="tpl_msg">Message (German — employers need German)</label><textarea id="tplBody"></textarea></div>
+    <div class="modal-actions">
+      <button class="btn-copy" id="tplCopy" type="button" style="background:var(--red);color:white">⧉ <span data-i18n="copy_email">Copy Email</span></button>
+      <button class="btn-copy" id="tplOpenApp" type="button">📧 <span data-i18n="open_app">Open Email App</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- Submit placement modal -->
+<div class="modal-backdrop" id="submitModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="submitTitle">Submit</h2>
+      <button class="close-modal" id="closeSubmit" type="button">×</button>
+    </div>
+    <p id="submitSub" style="font-size:12px"></p>
+    <div class="form-grid">
+      <div class="tpl-field"><label><span data-i18n="f_org">Organisation</span> *</label><input id="fOrg" type="text"></div>
+      <div class="tpl-field"><label><span data-i18n="f_city">City</span> *</label><input id="fCity" type="text"></div>
+      <div class="tpl-field"><label><span data-i18n="f_type">Type</span> *</label><select id="fType"><option>FSJ</option><option>BFD</option><option>Ausbildung</option><option>Other</option></select></div>
+      <div class="tpl-field"><label data-i18n="f_pay">Taschengeld / Pay</label><input id="fPay" type="text" placeholder="e.g. 550 €"></div>
+      <div class="tpl-field"><label data-i18n="f_lang">Language level</label><input id="fLang" type="text" placeholder="e.g. B1"></div>
+      <div class="tpl-field"><label data-i18n="f_email">Contact email</label><input id="fEmail" type="email"></div>
+      <div class="tpl-field"><label data-i18n="f_web">Website / application link</label><input id="fWeb" type="url"></div>
+      <div class="tpl-field"><label data-i18n="f_notes">Notes</label><textarea id="fNotes" style="min-height:70px"></textarea></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-copy" id="submitSend" type="button" style="background:#25D366;color:white">📱 <span data-i18n="send_wa">Send via WhatsApp</span></button>
+    </div>
+    <p style="font-size:11px;color:var(--muted)" data-i18n="submit_note">Your suggestion opens as a WhatsApp message to us. We review every submission before publishing.</p>
+  </div>
+</div>
+
+<!-- Contact modal -->
+<div class="modal-backdrop" id="contactModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 data-i18n="contact_title">📞 Contact Us</h2>
+      <button class="close-modal" id="closeContact" type="button">×</button>
+    </div>
+    <p data-i18n="contact_sub">Questions about a placement or the site? Message us directly.</p>
+    <div class="contact-row">
+      <a href="https://wa.me/917902674237?text=Hi%20Deutschweg!" target="_blank" rel="noopener" style="background:#25D366;color:#fff">📱 WhatsApp</a>
+      <a href="https://instagram.com/eldhose.bose" target="_blank" rel="noopener" style="background:#E1306C;color:#fff">📸 Instagram</a>
+    </div>
+  </div>
+</div>
+
+<!-- About modal -->
+<div class="modal-backdrop" id="aboutModal">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>ℹ️ About Deutschweg</h2>
+      <button class="close-modal" id="closeAbout" type="button">×</button>
+    </div>
+    <p><strong>Find. Contact. Apply.</strong></p>
+    <p data-i18n="about_p1">Deutschweg lists FSJ and BFD placements across Germany with direct contact details — so you can apply yourself, without any agency.</p>
+    <p data-i18n="about_p2" style="font-size:12px;color:var(--muted)">Contacts are collected from public sources. Always verify details with the organisation before applying — places fill up and requirements change.</p>
+    <a class="waBtn" href="https://chat.whatsapp.com/BXmMT3rSgAVD5bRZuZA7Jb?s=cl&p=a&mlu=4&ilr=4" target="_blank" rel="noopener">📱 Join our WhatsApp Group</a>
+  </div>
+</div>
+
 <!-- Paywall modal -->
 <div class="modal-backdrop" id="payModal">
   <div class="modal">
@@ -927,7 +1084,8 @@ document.addEventListener("DOMContentLoaded", () => {
         '<div class="location">⌖ ' + esc(p.city) + (p.land ? ", " + esc(p.land) : "") + '</div>' +
         '<div class="listing-email">✉ ' + esc(p.email) + '</div>' +
         '<div class="tags">' + housingTag(p.housing) + '</div>' +
-        '<div class="listing-bottom"><div class="card-actions">' +
+        '<button class="bkm" type="button" data-idx="' + idx + '" aria-label="Save">☆</button>' +
+      '<div class="listing-bottom"><div class="card-actions">' +
           '<button class="copy-btn-sm" type="button" data-email="' + esc(p.email) + '">⧉ Copy email</button>' +
           '<button class="details-btn" type="button" data-idx="' + idx + '">View details →</button>' +
         '</div></div>' +
@@ -977,6 +1135,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // wire details buttons
     listingContainer.querySelectorAll(".details-btn").forEach(b => {
       b.addEventListener("click", () => openDetails(parseInt(b.dataset.idx, 10)));
+    });
+    // wire bookmark buttons
+    const saved = getSaved();
+    listingContainer.querySelectorAll(".bkm").forEach(b => {
+      const i = parseInt(b.dataset.idx, 10);
+      b.textContent = saved.includes(i) ? "★" : "☆";
+      b.addEventListener("click", (e) => { e.stopPropagation(); toggleSave(i); b.textContent = getSaved().includes(i) ? "★" : "☆"; });
     });
   }
 
@@ -1081,6 +1246,177 @@ document.addEventListener("DOMContentLoaded", () => {
       showToast("If UPI app didn't open, pay manually to: eldhosebose7-4@oksbi");
     }, 2500);
   };
+
+
+  // ============ MENU ============
+  const menuModal = document.getElementById("menuModal");
+  document.getElementById("menuBtn").addEventListener("click", () => menuModal.classList.add("open"));
+  document.getElementById("closeMenu").addEventListener("click", () => menuModal.classList.remove("open"));
+  menuModal.addEventListener("click", e => { if (e.target === menuModal) menuModal.classList.remove("open"); });
+  function openSub(id){ menuModal.classList.remove("open"); document.getElementById(id).classList.add("open"); }
+  document.getElementById("mSaved").addEventListener("click", () => { renderSaved(); openSub("savedModal"); });
+  document.getElementById("mTemplates").addEventListener("click", () => openSub("tplModal"));
+  document.getElementById("mOffer").addEventListener("click", () => openSubmit("offer"));
+  document.getElementById("mKnow").addEventListener("click", () => openSubmit("know"));
+  document.getElementById("mContact").addEventListener("click", () => openSub("contactModal"));
+  document.getElementById("mAbout").addEventListener("click", () => openSub("aboutModal"));
+  [["closeSaved","savedModal"],["closeTpl","tplModal"],["closeSubmit","submitModal"],["closeContact","contactModal"],["closeAbout","aboutModal"]].forEach(([b,m]) => {
+    document.getElementById(b).addEventListener("click", () => document.getElementById(m).classList.remove("open"));
+    document.getElementById(m).addEventListener("click", e => { if (e.target === document.getElementById(m)) document.getElementById(m).classList.remove("open"); });
+  });
+
+  // ============ SAVED PLACEMENTS ============
+  function getSaved(){ try { return JSON.parse(localStorage.getItem("dw_saved") || "[]"); } catch(e){ return []; } }
+  function setSaved(a){ localStorage.setItem("dw_saved", JSON.stringify(a)); }
+  function toggleSave(i){
+    let s = getSaved();
+    if (s.includes(i)) { s = s.filter(x => x !== i); showToast("Removed from saved"); }
+    else { s.push(i); showToast("Saved!"); }
+    setSaved(s);
+  }
+  function renderSaved(){
+    const box = document.getElementById("savedList");
+    const s = getSaved();
+    const places = (typeof PLACES !== "undefined" ? PLACES : []);
+    if (!s.length) { box.innerHTML = '<p style="color:var(--muted);font-size:13px">No saved placements yet. Tap ☆ on any card to save it here.</p>'; return; }
+    box.innerHTML = s.map(i => {
+      const p = places[i]; if (!p) return "";
+      return '<div class="saved-item"><div class="info"><strong>' + esc(p.name) + '</strong><span>' + esc(p.city) + ' · ' + esc(p.email) + '</span></div>' +
+        '<button type="button" data-i="' + i + '">Remove</button></div>';
+    }).join("");
+    box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { toggleSave(parseInt(b.dataset.i,10)); renderSaved(); renderListings(); }));
+  }
+
+  // ============ EMAIL TEMPLATES ============
+  const TPLS = {
+    fsj: {
+      en_guide: "Replace the [brackets], attach your CV + letters, send from your own email.",
+      ml_guide: "[ബ്രാക്കറ്റുകൾ] മാറ്റി, നിങ്ങളുടെ CVയും കത്തുകളും ചേർത്ത് നിങ്ങളുടെ ഇമെയിലിൽ നിന്ന് അയക്കൂ.",
+      subject: "Bewerbung für FSJ – [Your Name]",
+      body: "Sehr geehrte Damen und Herren,\n\nich bewerbe mich für ein Freiwilliges Soziales Jahr (FSJ) in Ihrem Haus, gerne in der Pflege, flexibel ab [Month Year].\n\nKurz zu mir: Ich bin [Age] Jahre alt, komme aus Indien ([City, State]) und habe [X Jahre] als [Your Experience] gearbeitet. Deutsch: [Your German Level].\n\nAnbei sende ich Ihnen meinen Lebenslauf, meine Motivationsschreiben und ein Bewerbungsfoto.\n\nÜber eine Rückmeldung würde ich mich sehr freuen.\n\nMit freundlichen Grüßen\n[Your Name]\nTel: [Your Phone] | [Your Email]"
+    },
+    bfd: {
+      en_guide: "Replace the [brackets], attach your CV + letters, send from your own email.",
+      ml_guide: "[ബ്രാക്കറ്റുകൾ] മാറ്റി, നിങ്ങളുടെ CVയും കത്തുകളും ചേർത്ത് നിങ്ങളുടെ ഇമെയിലിൽ നിന്ന് അയക്കൂ.",
+      subject: "Bewerbung für BFD – [Your Name]",
+      body: "Sehr geehrte Damen und Herren,\n\nich bewerbe mich für einen Bundesfreiwilligendienst (BFD) in Ihrer Einrichtung, gerne in der Pflege, flexibel ab [Month Year].\n\nKurz zu mir: Ich bin [Age] Jahre alt, komme aus Indien ([City, State]) und habe [X Jahre] als [Your Experience] gearbeitet. Deutsch: [Your German Level].\n\nAnbei sende ich Ihnen meinen Lebenslauf, meine Motivationsschreiben und ein Bewerbungsfoto.\n\nÜber eine Rückmeldung würde ich mich sehr freuen.\n\nMit freundlichen Grüßen\n[Your Name]\nTel: [Your Phone] | [Your Email]"
+    },
+    ausbildung: {
+      en_guide: "Short enquiry first — ask if the Ausbildung place is still free before sending full documents.",
+      ml_guide: "ആദ്യം ചെറിയ അന്വേഷണം അയക്കൂ — സ്ഥലം ഒഴിവുണ്ടോ എന്ന് ചോദിക്കൂ, പിന്നീട് പൂർണ്ണ രേഖകൾ അയക്കാം.",
+      subject: "Anfrage: Ausbildungsplatz [Beruf] 2027 – [Your Name]",
+      body: "Sehr geehrte Damen und Herren,\n\nich interessiere mich für den Ausbildungsplatz als [Beruf] ab [2027]. Ist die Stelle noch frei, und nehmen Sie auch Bewerber aus dem Ausland?\n\nKurz zu mir: Ich bin [Age] Jahre alt, komme aus Indien und habe [Your Experience]. Deutsch: [Your German Level].\n\nÜber eine kurze Rückmeldung würde ich mich freuen.\n\nMit freundlichen Grüßen\n[Your Name]\nTel: [Your Phone] | [Your Email]"
+    }
+  };
+  let curTpl = "fsj", curTplLang = "en";
+  function renderTpl(){
+    const t = TPLS[curTpl];
+    document.getElementById("tplGuide").textContent = curTplLang === "ml" ? t.ml_guide : t.en_guide;
+    document.getElementById("tplSubject").value = t.subject;
+    document.getElementById("tplBody").value = t.body;
+    document.querySelectorAll("[data-tpl]").forEach(b => b.classList.toggle("active", b.dataset.tpl === curTpl));
+    document.querySelectorAll("[data-tpllang]").forEach(b => b.classList.toggle("active", b.dataset.tpllang === curTplLang));
+  }
+  document.querySelectorAll("[data-tpl]").forEach(b => b.addEventListener("click", () => { curTpl = b.dataset.tpl; renderTpl(); }));
+  document.querySelectorAll("[data-tpllang]").forEach(b => b.addEventListener("click", () => { curTplLang = b.dataset.tpllang; renderTpl(); }));
+  document.getElementById("tplCopy").addEventListener("click", () => {
+    copyText(document.getElementById("tplSubject").value + "\n\n" + document.getElementById("tplBody").value, "Email copied!");
+  });
+  document.getElementById("tplOpenApp").addEventListener("click", () => {
+    const s = encodeURIComponent(document.getElementById("tplSubject").value);
+    const b = encodeURIComponent(document.getElementById("tplBody").value);
+    window.location.href = "mailto:?subject=" + s + "&body=" + b;
+  });
+  renderTpl();
+
+  // ============ SUBMIT PLACEMENT ============
+  function openSubmit(kind){
+    const enBtn = document.getElementById("englishBtn");
+    const en = !enBtn || enBtn.classList.contains("active");
+    document.getElementById("submitTitle").textContent = kind === "offer" ? (en ? "🏢 Offer a Placement" : "🏢 ഒരു അവസരം നൽകൂ") : (en ? "💡 Know a Placement?" : "💡 ഒരു അവസരം അറിയാമോ?");
+    document.getElementById("submitSub").textContent = kind === "offer"
+      ? "Are you an organisation with FSJ/BFD/Ausbildung places? Tell us."
+      : "Found a placement online? Share it so others can apply.";
+    openSub("submitModal");
+  }
+  document.getElementById("submitSend").addEventListener("click", () => {
+    const org = document.getElementById("fOrg").value.trim(), city = document.getElementById("fCity").value.trim();
+    if (!org || !city) { showToast("Please fill Organisation and City"); return; }
+    const lines = ["New placement suggestion:", "Org: " + org, "City: " + city, "Type: " + document.getElementById("fType").value];
+    [["fPay","Pay"],["fLang","Language"],["fEmail","Email"],["fWeb","Website"],["fNotes","Notes"]].forEach(([id, lb]) => {
+      const v = document.getElementById(id).value.trim();
+      if (v) lines.push(lb + ": " + v);
+    });
+    window.open("https://wa.me/917902674237?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+    showToast("Opening WhatsApp…");
+  });
+
+  // ============ I18N ============
+  const I18N = {
+    ml: {
+      hero_h1a: "ജർമ്മനിയിൽ നിങ്ങളുടെ FSJ / BFD", hero_h1b: "കണ്ടെത്തൂ",
+      hero_copy: "ആശുപത്രികൾ, കെയർ ഹോമുകൾ, കിത്തകൾ, സന്നദ്ധ സംഘടനകൾ. നേരിട്ട് ബന്ധപ്പെടൂ, നേരിട്ട് അപേക്ഷിക്കൂ. ഏജൻസി വേണ്ട.",
+      explore: "അവസരങ്ങൾ കാണുക",
+      b1t: "നേരിട്ടുള്ള ബന്ധം", b1p: "ഔദ്യോഗിക ബന്ധപ്പെടൽ വിവരങ്ങൾ",
+      b2t: "താമസ വിവരം", b2p: "താമസസൗകര്യം ഉണ്ടോ എന്ന് പരിശോധിക്കൂ",
+      b3t: "വിദേശ അപേക്ഷകർക്ക്", b3p: "ലോകമെമ്പാടുമുള്ള അപേക്ഷകർക്ക്",
+      search_ph: "നഗരം, ആശുപത്രി അല്ലെങ്കിൽ സ്ഥാപനം തിരയൂ...",
+      search_btn: "തിരയുക", latest: "പുതിയ അവസരങ്ങൾ", view_all: "എല്ലാം കാണുക →",
+      menu_title: "മെനു", m_saved: "സേവ് ചെയ്തവ", m_saved_s: "ബുക്ക്മാർക്ക് ചെയ്ത സ്ഥലങ്ങൾ",
+      m_tpl: "ഇമെയിൽ മാതൃകകൾ", m_tpl_s: "FSJ · BFD · Ausbildung",
+      m_offer: "അവസരം നൽകൂ", m_offer_s: "നിങ്ങൾ ഒരു സ്ഥാപനമാണോ?",
+      m_know: "അവസരം അറിയാമോ?", m_know_s: "കണ്ടെത്തിയത് നിർദ്ദേശിക്കൂ",
+      m_contact: "ബന്ധപ്പെടൂ", m_contact_s: "സംശയങ്ങൾ? സംസാരിക്കൂ",
+      m_about: "ഞങ്ങളെക്കുറിച്ച്", m_about_s: "ഇതെന്താണ്",
+      saved_title: "🔖 സേവ് ചെയ്ത അവസരങ്ങൾ", saved_sub: "ഈ ഉപകരണത്തിൽ മാത്രം സേവ് ചെയ്യപ്പെടും.",
+      tpl_title: "✉️ ഇമെയിൽ മാതൃകകൾ", tpl_aus: "Ausbildung",
+      tpl_subject: "വിഷയം", tpl_msg: "സന്ദേശം (ജർമ്മൻ — തൊഴിലുടമകൾക്ക് ജർമ്മൻ വേണം)",
+      copy_email: "ഇമെയിൽ പകർത്തൂ", open_app: "ഇമെയിൽ ആപ്പ് തുറക്കൂ",
+      f_org: "സ്ഥാപനം", f_city: "നഗരം", f_type: "തരം", f_pay: "പ്രതിമാസ വേതനം",
+      f_lang: "ഭാഷാ നില", f_email: "ബന്ധപ്പെടാനുള്ള ഇമെയിൽ", f_web: "വെബ്സൈറ്റ് / അപേക്ഷാ ലിങ്ക്",
+      f_notes: "കുറിപ്പുകൾ", send_wa: "വാട്ട്സ്ആപ്പിൽ അയക്കൂ",
+      submit_note: "നിങ്ങളുടെ നിർദ്ദേശം ഞങ്ങൾക്ക് വാട്ട്സ്ആപ്പ് സന്ദേശമായി തുറക്കും. പ്രസിദ്ധീകരിക്കുന്നതിന് മുമ്പ് ഞങ്ങൾ ഓരോന്നും പരിശോധിക്കും.",
+      contact_title: "📞 ബന്ധപ്പെടൂ", contact_sub: "അവസരത്തെക്കുറിച്ചോ സൈറ്റിനെക്കുറിച്ചോ സംശയം? നേരിട്ട് സന്ദേശമയക്കൂ.",
+      about_p1: "ജർമ്മനിയിലുടനീളമുള്ള FSJ, BFD അവസരങ്ങൾ നേരിട്ടുള്ള ബന്ധപ്പെടൽ വിവരങ്ങളോടെ ഡച്ച്വെഗ് പട്ടികപ്പെടുത്തുന്നു — ഏജൻസി ഇല്ലാതെ നിങ്ങൾക്ക് തന്നെ അപേക്ഷിക്കാം.",
+      about_p2: "ബന്ധപ്പെടൽ വിവരങ്ങൾ പൊതു സ്രോതസ്സുകളിൽ നിന്ന് ശേഖരിച്ചതാണ്. അപേക്ഷിക്കുന്നതിന് മുമ്പ് സ്ഥാപനവുമായി വിവരങ്ങൾ ഉറപ്പാക്കൂ — അവസരങ്ങൾ നിറയാം, ആവശ്യകതകൾ മാറാം."
+    }
+  };
+  function applyLang(lang){
+    const dict = I18N[lang] || {};
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.dataset.i18n;
+      if (lang === "en") { if (el.dataset.en === undefined) el.dataset.en = el.innerHTML; el.innerHTML = el.dataset.en; }
+      else if (dict[k]) el.innerHTML = dict[k];
+    });
+    document.querySelectorAll("[data-i18n-ph]").forEach(el => {
+      const k = el.dataset.i18nPh;
+      if (lang === "en") { if (el.dataset.enPh === undefined) el.dataset.enPh = el.placeholder; el.placeholder = el.dataset.enPh; }
+      else if (dict[k]) el.placeholder = dict[k];
+    });
+    try { localStorage.setItem("dw_lang", lang); } catch(e){}
+  }
+  (function initLang(){
+    let savedLang = "en";
+    try { savedLang = localStorage.getItem("dw_lang") || "en"; } catch(e){}
+    if (savedLang === "ml") {
+      document.getElementById("englishBtn").classList.remove("active");
+      document.getElementById("malayalamBtn").classList.add("active");
+      applyLang("ml");
+    }
+  })();
+  document.getElementById("englishBtn").onclick = () => {
+    document.getElementById("englishBtn").classList.add("active");
+    document.getElementById("malayalamBtn").classList.remove("active");
+    applyLang("en"); showToast("English selected");
+  };
+  document.getElementById("malayalamBtn").onclick = () => {
+    document.getElementById("malayalamBtn").classList.add("active");
+    document.getElementById("englishBtn").classList.remove("active");
+    applyLang("ml"); showToast("മലയാളം തിരഞ്ഞെടുത്തു");
+  };
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape") { ["menuModal","savedModal","tplModal","submitModal","contactModal","aboutModal"].forEach(id => { const m = document.getElementById(id); if (m) m.classList.remove("open"); }); }
+  });
 
   window.renderGrid = renderListings;
 
