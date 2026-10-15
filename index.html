@@ -860,7 +860,8 @@ Tel: [Your Phone] | [Your Email]</div>
       <div class="payOption">
         <h4>📱 Step 1: Pay via UPI</h4>
         <p>Tap below to pay ₹499 — opens GPay, PhonePe or Paytm directly:</p>
-        <a class="upiPayBtn" href="upi://pay?pa=eldhosebose7-4@oksbi&pn=Eldhose%20Bose&am=499&cu=INR&tn=FSJ%20Finder%20Unlock">💳 Tap to Pay ₹499 via UPI</a>
+        <button class="upiPayBtn" type="button" onclick="payViaUPI()" style="width:100%;border:0;cursor:pointer">💳 Tap to Pay ₹499 via UPI</button>
+<p style="text-align:center;font-size:12px;color:#667085">Opens GPay, PhonePe, Paytm directly</p>
         <p style="text-align:center;font-size:12px">Or pay manually to: <span class="upiId" style="display:inline;padding:4px 8px">eldhosebose7-4@oksbi</span></p>
       </div>
       <div class="payOption">
@@ -1069,6 +1070,18 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // expose for paywall.js unlock callback
+  
+  // UPI payment - tries deep link, falls back to showing UPI ID
+  window.payViaUPI = function() {
+    const upiLink = "upi://pay?pa=eldhosebose7-4@oksbi&pn=Eldhose%20Bose&am=499&cu=INR&tn=FSJ%20Finder%20Unlock";
+    // Try to open UPI app
+    window.location.href = upiLink;
+    // Fallback: after 2 seconds, if still here, show the UPI ID for manual payment
+    setTimeout(() => {
+      showToast("If UPI app didn't open, pay manually to: eldhosebose7-4@oksbi");
+    }, 2500);
+  };
+
   window.renderGrid = renderListings;
 
   renderListings();
