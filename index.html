@@ -1018,11 +1018,11 @@ Tel: [Your Phone] | [Your Email]</div>
     <div class="payBox">
       <h2>🔓 Unlock All Contacts</h2>
       <p style="text-align:center;color:#667085;font-size:14px;margin:0">Get access to all 596 FSJ/BFD employer contacts</p>
-      <div class="price">₹499 <small>one-time payment</small></div>
+      <div class="price">₹299 <small>one-time payment</small></div>
       <div class="payOption">
         <h4>📱 Step 1: Pay via UPI</h4>
-        <p>Tap below to pay ₹499 — opens GPay, PhonePe or Paytm directly:</p>
-        <button class="upiPayBtn" type="button" onclick="payViaUPI()" style="width:100%;border:0;cursor:pointer">💳 Tap to Pay ₹499 via UPI</button>
+        <p>Tap below to pay ₹299 — opens GPay, PhonePe or Paytm directly:</p>
+        <button class="upiPayBtn" type="button" onclick="payViaUPI()" style="width:100%;border:0;cursor:pointer">💳 Tap to Pay ₹299 via UPI</button>
 <p style="text-align:center;font-size:12px;color:#667085">Opens GPay, PhonePe, Paytm directly</p>
         <p style="text-align:center;font-size:12px">Or pay manually to: <span class="upiId" style="display:inline;padding:4px 8px">eldhosebose7-4@oksbi</span></p>
       </div>
@@ -1030,7 +1030,7 @@ Tel: [Your Phone] | [Your Email]</div>
         <h4>📸 Step 2: Send Payment Screenshot</h4>
         <p>Send your payment screenshot on WhatsApp to get your unlock code.</p>
       </div>
-      <a class="waBtn" href="https://wa.me/917902674237?text=Hi%2C%20I%20paid%20%C2%B9499%20for%20FSJ%20Finder.%20Here%20is%20my%20screenshot." target="_blank">📱 Send Screenshot on WhatsApp</a>
+      <a class="waBtn" href="https://wa.me/917902674237?text=Hi%2C%20I%20paid%20%C2%B9299%20for%20FSJ%20Finder.%20Here%20is%20my%20screenshot." target="_blank">📱 Send Screenshot on WhatsApp</a>
       <div class="payOption">
         <h4>🔑 Step 3: Enter Unlock Code</h4>
         <p>Enter the code you received after payment:</p>
@@ -1133,8 +1133,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!unlocked && currentFiltered.length > FREE_LIMIT) {
       const locked = currentFiltered.length - FREE_LIMIT;
       html += '<div class="paywall-card"><h3>🔒 ' + locked + ' more contacts locked</h3>' +
-        '<p>Unlock all ' + currentFiltered.length + ' contacts with a one-time payment of ₹499.</p>' +
-        '<button class="unlock-btn" type="button" onclick="openPayModal()">Unlock All — ₹499</button></div>';
+        '<p>Unlock all ' + currentFiltered.length + ' contacts with a one-time payment of ₹299.</p>' +
+        '<button class="unlock-btn" type="button" onclick="openPayModal()">Unlock All — ₹299</button></div>';
     }
 
     listingContainer.innerHTML = html;
@@ -1256,7 +1256,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // UPI payment - tries deep link, falls back to showing UPI ID
   window.payViaUPI = function() {
-    const upiLink = "upi://pay?pa=eldhosebose7-4@oksbi&pn=Eldhose%20Bose&am=499&cu=INR&tn=FSJ%20Finder%20Unlock";
+    const upiLink = "upi://pay?pa=eldhosebose7-4@oksbi&pn=Eldhose%20Bose&am=299&cu=INR&tn=FSJ%20Finder%20Unlock";
     // Try to open UPI app
     window.location.href = upiLink;
     // Fallback: after 2 seconds, if still here, show the UPI ID for manual payment
